@@ -1,0 +1,104 @@
+<html><head><base href="/" />
+    <title>Platform Redirect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    body {
+        margin: 0;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        text-align: center;
+    }
+    
+    .loader {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .message {
+        font-size: 1.2em;
+        color: #333;
+        margin: 20px 0;
+    }
+    
+    .manual-links {
+        margin-top: 20px;
+        display: none;
+    }
+    
+    .manual-links a {
+        display: block;
+        margin: 10px 0;
+        padding: 10px 20px;
+        background: #3498db;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.3s;
+    }
+    
+    .manual-links a:hover {
+        background: #2980b9;
+    }
+    </style>
+    </head>
+    <body>
+    <div class="message">Detecting your platform...</div>
+    <div class="loader"></div>
+    <div class="manual-links">
+        <p>If you're not automatically redirected, please choose your platform:</p>
+        <a href="https://apps.apple.com/us/app/more-sliding-puzzle/id6504446737">iOS App Store</a>
+        <a href="https://play.google.com/store/apps/details?id=com.prototyper.slidingpuzzle">Google Play Store</a>
+        <a href="https://farllee.weebly.com/prototyper.html">Web Version</a>
+    </div>
+    
+    <script>
+    function detectPlatform() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        
+        // iOS detection
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            window.location.href = "https://apps.apple.com/us/app/more-sliding-puzzle/id6504446737";
+            return;
+        }
+        
+        // Android detection
+        if (/android/i.test(userAgent)) {
+            window.location.href = "https://play.google.com/store/apps/details?id=com.prototyper.slidingpuzzle";
+            return;
+        }
+        
+        // Default to web version for other platforms
+        window.location.href = "https://farllee.weebly.com/prototyper.html";
+    }
+    
+    // Show manual links if redirect doesn't happen within 3 seconds
+    setTimeout(() => {
+        const manualLinks = document.querySelector('.manual-links');
+        const loader = document.querySelector('.loader');
+        const message = document.querySelector('.message');
+        
+        manualLinks.style.display = 'block';
+        loader.style.display = 'none';
+        message.textContent = 'Please select your platform:';
+    }, 3000);
+    
+    // Start detection when page loads
+    window.onload = detectPlatform;
+    </script>
+    </body></html>

@@ -66,6 +66,8 @@
         <a href="https://play.google.com/store/apps/details?id=com.prototyper.slidingpuzzle">Google Play Store</a>
         <a href="https://farllee.weebly.com/prototyper.html">Web Version</a>
     </div>
+    <div id="platform"></div>
+    <div id="target"></div>
     
     <script>
     function detectPlatform() {
@@ -73,18 +75,21 @@
         
         // iOS detection
         if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-            window.location.href = "https://apps.apple.com/us/app/more-sliding-puzzle/id6504446737";
+            document.getElementById("target").innerHTML = "iOS";
+            //window.location.href = "https://apps.apple.com/us/app/more-sliding-puzzle/id6504446737";
             return;
         }
         
         // Android detection
         if (/android/i.test(userAgent) || userAgent.indexOf("android") > -1 || /(mobile)/i.test(userAgent)) {
-            window.location.href = "https://play.google.com/store/apps/details?id=com.prototyper.slidingpuzzle";
+            document.getElementById("target").innerHTML = "Android";
+            //window.location.href = "https://play.google.com/store/apps/details?id=com.prototyper.slidingpuzzle";
             return;
         }
         
         // Default to web version for other platforms
-        window.location.href = "https://farllee.weebly.com/prototyper.html";
+        document.getElementById("target").innerHTML = "Other";
+        //window.location.href = "https://farllee.weebly.com/prototyper.html";
     }
     
     // Show manual links if redirect doesn't happen within 3 seconds

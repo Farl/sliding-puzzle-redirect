@@ -78,7 +78,7 @@
         }
         
         // Android detection
-        if (/android/i.test(userAgent) || userAgent.indexOf("android") > -1) {
+        if (/android/i.test(userAgent) || userAgent.indexOf("android") > -1 || /(mobile)/i.test(userAgent)) {
             window.location.href = "https://play.google.com/store/apps/details?id=com.prototyper.slidingpuzzle";
             return;
         }

@@ -72,6 +72,7 @@
     <script>
     function detectPlatform() {
         const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        document.getElementById("platform").innerHTML = userAgent;
         
         // iOS detection
         if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
